@@ -11,7 +11,6 @@ var poll = (promiseFn, time) =>
   promiseFn().then(sleep(time).then(() => poll(promiseFn, time)));
 
 // Greet the World every second
-var svg = 0;
 poll(
   () =>
     new Promise(() => {
