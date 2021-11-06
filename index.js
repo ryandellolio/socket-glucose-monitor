@@ -14,10 +14,32 @@ var poll = (promiseFn, time) =>
 poll(
   () =>
     new Promise(() => {
-      console.log("Hello World!");
+      // Make a request for a user with a given ID
+      axios
+        .get("https://glucose.ryan.dellol.io/api/v1/entries/current.json")
+        .then(function (response) {
+          // handle success
+          console.log(response.data[0].sgv + ' at ' + response.data[0].dateString);
+          io.emit("sgv", response.data[0].sgv);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
     }),
-  1000
+  2000
 );
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
