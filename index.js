@@ -6,34 +6,23 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const axios = require("axios");
 
+var sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
+var poll = (promiseFn, time) =>
+  promiseFn().then(sleep(time).then(() => poll(promiseFn, time)));
+
+// Greet the World every second
+poll(
+  () =>
+    new Promise(() => {
+      console.log("Hello World!");
+    }),
+  1000
+);
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-// Make a request for a user with a given ID
-axios
-  .get("https://glucose.ryan.dellol.io/api/v1/entries/current.json")
-  .then(function (response) {
-    // handle success
-    console.log(response.data[0].sgv);
-
-    io.on("connection", (socket) => {
-      console.log("a user connected");
-
-      io.emit("sgv", response.data[0].sgv);
-
-      socket.on("disconnect", () => {
-        console.log("user disconnected");
-      });
-    });
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
 server.listen(3000, () => {
   console.log("listening on *:3000");
 });
