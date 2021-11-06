@@ -11,15 +11,14 @@ var poll = (promiseFn, time) =>
   promiseFn().then(sleep(time).then(() => poll(promiseFn, time)));
 
 // Greet the World every second
-var sgv = 0;
+var svg = 0;
 poll(
   () =>
     new Promise(() => {
-      sgv = sgv + 5;
+      console.log("Hello World!");
     }),
   1000
 );
-
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
