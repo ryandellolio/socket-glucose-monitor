@@ -20,10 +20,10 @@ poll(
         .then(function (response) {
           // handle success
 
-
           if (global.dateString !== response.data[0].dateString) {
             console.log("New reading detected");
             io.emit("sgv", response.data[0].sgv);
+            io.emit("reading", response.data[0]);
           }
           global.dateString = response.data[0].dateString;
 
