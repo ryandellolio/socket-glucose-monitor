@@ -19,11 +19,13 @@
       var socket = io();
 
       $(document).ready(function () {
-
-        socket.on('sgv', function (msg) {
+        socket.on("sgv", function (msg) {
           $("#main").html(msg);
         });
-        
+
+        socket.on("reading", function (msg) {
+          console.log(msg);
+        });
       });
     </script>
   </body>
