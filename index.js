@@ -3,10 +3,13 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 const axios = require("axios");
 const port = process.env.PORT || 3000;
-
 
 var sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
 var poll = (promiseFn, time) =>
