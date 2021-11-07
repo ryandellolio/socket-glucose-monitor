@@ -43,7 +43,7 @@ poll(
           console.log(error);
         });
     }),
-  4000
+  8000
 );
 
 io.on("connection", (socket) => {
