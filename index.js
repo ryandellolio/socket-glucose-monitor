@@ -19,25 +19,23 @@ poll(
         .get("https://glucose.ryan.dellol.io/api/v1/entries/current.json")
         .then(function (response) {
           // handle success
-          console.log(response.data[0].sgv + " at " + response.data[0].dateString);
 
-          if(global.dateString !== response.data[0].dateString){
+
+          if (global.dateString !== response.data[0].dateString) {
             console.log("New reading detected");
             io.emit("sgv", response.data[0].sgv);
           }
           global.dateString = response.data[0].dateString;
 
+          console.log(
+            response.data[0].sgv + " at " + response.data[0].dateString
+          );
         })
-        .then(function (){
 
-        })
         .catch(function (error) {
           // handle error
           console.log(error);
-        })
-
-
-
+        });
     }),
   4000
 );
