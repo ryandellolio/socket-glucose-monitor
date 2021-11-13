@@ -8,7 +8,9 @@
   </head>
   <body>
     <div id="main">Loading...</div>
-
+    <div style="width:800px; height:400px;">
+      <canvas id="myChart" width="800" height="300"></canvas>
+    </div>
     <script
       src="https://cdn.socket.io/4.3.2/socket.io.min.js"
       integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
@@ -19,7 +21,12 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"
+      integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="/js/chart.js"></script>
     <script>
       var socket = io();
@@ -32,6 +39,11 @@
 
         socket.on("reading", function (msg) {
           console.log(msg);
+          myChart.data.labels.push(msg.dateString);
+          myChart.data.datasets[0].data.push(msg.sgv);
+          console.log(msg.dateString + " " + msg.sgv);
+          myChart.update();
+
         });
       });
     </script>
