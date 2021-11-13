@@ -62,6 +62,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.use(express.static("static"));
+
 server.listen(port, () => {
   console.log("listening " + port);
 });
