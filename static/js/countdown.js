@@ -1,7 +1,7 @@
 function nextReading(dateString) {
     
     var lastReading = moment(dateString);
-    var nextReading = lastReading.add(moment.duration(5, 'minutes'));
+    var nextReading = lastReading.add(moment.duration(5.2, 'minutes')); // this is tuned to the exact tick d
     return nextReading;
 }
 
