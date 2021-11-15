@@ -44,7 +44,7 @@
 
       $(document).ready(function () {
         socket.on("reading", function (msg) {
-          $("#main").html("Reading: " + msg.sgv + "mg/dL");
+          $("#main").html("Reading: " + msg.sgv + " mg/dL");
           $(document).prop("title", generateTitle(msg));
           $("#next").html(
             "Next reading: " + moment(nextReading(msg.dateString)).format("lll")
