@@ -33,7 +33,7 @@ poll(
           global.lastReading = response.data[0];
 
           console.log(
-            response.data[0].sgv + " at " + response.data[0].dateString
+            "tick: " + response.data[0].sgv + " at " + response.data[0].dateString
           );
         })
 

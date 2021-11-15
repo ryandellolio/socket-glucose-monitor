@@ -44,12 +44,15 @@
 
       $(document).ready(function () {
         socket.on("reading", function (msg) {
-          $("#main").html(msg.sgv);
+          $("#main").html("Reading: " + msg.sgv);
           $(document).prop("title", generateTitle(msg));
-          $("#next").html("Next reading: " + moment(nextReading(msg.dateString)).format("lll"));
-          
-          $("#countdown").html(countdownTime(msg.dateString));  
+          $("#next").html(
+            "Next reading: " + moment(nextReading(msg.dateString)).format("lll")
+          );
 
+          $("#countdown").html(
+            "Time until next reading: " + countdownTime(msg.dateString)
+          );
 
           myChart.data.labels.push(msg.dateString);
           myChart.data.datasets[0].data.push(msg.sgv);
