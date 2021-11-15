@@ -27,7 +27,6 @@ poll(
 
           if (global.dateString !== response.data[0].dateString) {
             console.log("New reading detected");
-            io.emit("sgv", response.data[0].sgv);
             io.emit("reading", response.data[0]);
           }
           global.dateString = response.data[0].dateString;
@@ -50,7 +49,6 @@ io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected");
 
   //first time emit the last reading
-  io.to(socket.id).emit("sgv", global.lastReading.sgv);
   io.to(socket.id).emit("reading", global.lastReading);
 
   socket.on("disconnect", () => {
