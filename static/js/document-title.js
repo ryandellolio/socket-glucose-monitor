@@ -10,6 +10,10 @@ function generateTitle(msg) {
     case "Flat":
       direction_ascii = "→";
       break;
+    case "SingleUp":
+      direction_ascii = "↑";
+      break;
+    
     default:
       break;
   }
