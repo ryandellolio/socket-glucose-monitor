@@ -44,14 +44,12 @@
 
       $(document).ready(function () {
         socket.on("reading", function (msg) {
-          $("#main").html("Currently: " + msg.sgv);
+          $("#main").html(msg.sgv);
           $(document).prop("title", generateTitle(msg));
-          $("#next").html("Next reading: " + nextReading(msg.dateString));
+          $("#next").html("Next reading: " + moment(nextReading(msg.dateString)).format("lll"));
+          
+          $("#countdown").html(countdownTime(msg.dateString));  
 
-          clearInterval(timer); //fixes double countdown bug
-          var timer = setInterval(() => {
-            $("#countdown").html(countdownTime(msg.dateString));
-          }, 1000);
 
           myChart.data.labels.push(msg.dateString);
           myChart.data.datasets[0].data.push(msg.sgv);
