@@ -32,18 +32,13 @@
       var socket = io();
 
       $(document).ready(function () {
-        socket.on("sgv", function (msg) {
-          $("#main").html(msg);
-          $(document).prop("title", msg);
-        });
-
         socket.on("reading", function (msg) {
-          console.log(msg);
+          $("#main").html(msg.sgv);
+          $(document).prop("title", msg.sgv);
+
           myChart.data.labels.push(msg.dateString);
           myChart.data.datasets[0].data.push(msg.sgv);
-          console.log(msg.dateString + " " + msg.sgv);
           myChart.update();
-
         });
       });
     </script>
