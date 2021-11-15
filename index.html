@@ -8,7 +8,10 @@
   </head>
   <body>
     <div id="main">Loading...</div>
-    <div style="width:800px; height:400px;">
+    <div id="next">Loading...</div>
+    <div id="countdown">Loading...</div>
+
+    <div style="width: 800px; height: 400px">
       <canvas id="myChart" width="800" height="300"></canvas>
     </div>
     <script
@@ -27,15 +30,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="/js/chart.js"></script>
     <script src="/js/document-title.js"></script>
+    <script src="/js/countdown.js"></script>
     <script>
       var socket = io();
 
       $(document).ready(function () {
         socket.on("reading", function (msg) {
-          $("#main").html(msg.sgv);
+          $("#main").html("Reading: " + msg.sgv);
           $(document).prop("title", generateTitle(msg));
+          $("#next").html(
+            "Next reading: " + moment(nextReading(msg.dateString)).format("lll")
+          );
+
+          $("#countdown").html(
+            "Time until next reading: " + countdownTime(msg.dateString)
+          );
 
           myChart.data.labels.push(msg.dateString);
           myChart.data.datasets[0].data.push(msg.sgv);
