@@ -28,13 +28,14 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="/js/chart.js"></script>
+    <script src="/js/document-title.js"></script>
     <script>
       var socket = io();
 
       $(document).ready(function () {
         socket.on("reading", function (msg) {
           $("#main").html(msg.sgv);
-          $(document).prop("title", msg.sgv);
+          $(document).prop("title", generateTitle(msg));
 
           myChart.data.labels.push(msg.dateString);
           myChart.data.datasets[0].data.push(msg.sgv);
