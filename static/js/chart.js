@@ -16,7 +16,7 @@ const myChart = new Chart(ctx, {
   options: {
     scales: {
       y: {
-        max: 300,
+        max: 200,
         min: 30,
         beginAtZero: true,
         ticks: {
@@ -37,6 +37,21 @@ const myChart = new Chart(ctx, {
             yMax: 60,
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
+            label: {
+              content: (ctx) => '60',
+              enabled: true
+            },
+          },
+          line2: {
+            type: "line",
+            yMin: 180,
+            yMax: 180,
+            borderColor: "#f5b942",
+            borderWidth: 2,
+            label: {
+              content: (ctx) => '180',
+              enabled: true
+            },
           },
         },
       },
