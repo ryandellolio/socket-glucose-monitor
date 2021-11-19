@@ -21,7 +21,7 @@ poll(
     new Promise(() => {
       // Make a request for a user with a given ID
       axios
-        .get("https://glucose.ryan.dellol.io/api/v1/entries.json?count=30")
+        .get("https://glucose.ryan.dellol.io/api/v1/entries/sgv.json?find[device]=share2&count=30")
         .then(function (response) {
           // handle success
 
