@@ -56,7 +56,6 @@
               moment(history[i].dateString).format("hh:mm a")
             );
             myChart.data.datasets[0].data.push(history[i].sgv);
-            myChart.update();
             i = i - 1;
           }
           console.log(history);
