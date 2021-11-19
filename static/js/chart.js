@@ -10,6 +10,7 @@ const myChart = new Chart(ctx, {
         borderColor: "#000",
         backgroundColor: "#000",
         data: [],
+        showLine: false
       },
     ],
   },
