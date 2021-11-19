@@ -15,7 +15,7 @@ const myChart = new Chart(ctx, {
         lineTension: 0,
       },
       {
-        label: "Change +/- mg/DL",
+        label: "Change +/- mg/dL",
         yAxisID: "d",
         backgroundColor: "#99ccff",
         data: [],
