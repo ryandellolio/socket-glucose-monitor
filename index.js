@@ -21,7 +21,7 @@ poll(
     new Promise(() => {
       // Make a request for a user with a given ID
       axios
-        .get("https://glucose.ryan.dellol.io/api/v1/entries/current.json")
+        .get("https://glucose.ryan.dellol.io/api/v1/entries.json?count=20")
         .then(function (response) {
           // handle success
 
@@ -31,6 +31,7 @@ poll(
           }
           global.dateString = response.data[0].dateString;
           global.lastReading = response.data[0];
+          global.retro = response.data;
 
           console.log(
             "tick: " + response.data[0].sgv + " at " + response.data[0].dateString
@@ -48,7 +49,12 @@ poll(
 io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected");
 
-  //first time emit the last reading
+ 
+
+  //emit retro to that new connection only
+  io.to(socket.id).emit("retro", global.retro);
+
+   //first time emit the last reading to that new connection only
   io.to(socket.id).emit("reading", global.lastReading);
 
   socket.on("disconnect", () => {
