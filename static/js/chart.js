@@ -1,4 +1,6 @@
 const ctx = document.getElementById("myChart");
+Chart.register(ChartDataLabels);
+
 const myChart = new Chart(ctx, {
   type: "bar",
   data: {
@@ -13,6 +15,9 @@ const myChart = new Chart(ctx, {
         showLine: false,
         pointRadius: 3,
         lineTension: 0,
+        datalabels: {
+          display: false
+        }
       },
       {
         label: "Delta",
@@ -20,7 +25,7 @@ const myChart = new Chart(ctx, {
         backgroundColor: "#99ccff",
         data: [],
         showLine: false,
-        pointRadius: 3,
+        pointRadius: 3
       },
     ],
   },
@@ -47,7 +52,7 @@ const myChart = new Chart(ctx, {
       d: {
         max: -15,
         min: 15,
-        position: "right",
+        position: "right"
       },
     },
     plugins: {
@@ -82,11 +87,11 @@ const myChart = new Chart(ctx, {
           },
           line3: {
             type: "line",
-            yScaleID: 'd',
+            yScaleID: "d",
             yMin: 0,
             yMax: 0,
             borderColor: "#99ccff",
-            borderWidth: 1.5
+            borderWidth: 1.5,
           },
         },
       },
