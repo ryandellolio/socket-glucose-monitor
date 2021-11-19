@@ -5,7 +5,7 @@ const myChart = new Chart(ctx, {
     labels: [],
     datasets: [
       {
-        label: "Glucose mg/dl",
+        label: "Glucose mg/dl 5 hour distribution",
         borderDash: [5, 5],
         borderColor: "#000",
         backgroundColor: "#000",
@@ -40,7 +40,9 @@ const myChart = new Chart(ctx, {
             borderWidth: 2,
             label: {
               content: (ctx) => '60',
-              enabled: true
+              enabled: true,
+              color: "#fff",
+              backgroundColor: "rgb(255, 99, 132)"
             },
           },
           line2: {
@@ -51,7 +53,9 @@ const myChart = new Chart(ctx, {
             borderWidth: 2,
             label: {
               content: (ctx) => '180',
-              enabled: true
+              enabled: true,
+              color: "#fff",
+              backgroundColor: "#f5b942"
             },
           },
         },
