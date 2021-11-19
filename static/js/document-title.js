@@ -1,4 +1,4 @@
-function generateTitle(msg) {
+function generateTitle(msg, delta) {
   var direction_ascii;
   switch (msg.direction) {
     case "FortyFiveDown":
@@ -18,5 +18,5 @@ function generateTitle(msg) {
       break;
   }
 
-  return msg.sgv + " " + direction_ascii;
+  return msg.sgv + " " + delta + " " + direction_ascii;
 }
