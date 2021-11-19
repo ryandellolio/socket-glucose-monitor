@@ -19,7 +19,6 @@ $(document).ready(function () {
 
   socket.on("reading", function (msg) {
     $("#main").html("Reading: " + msg.sgv + " mg/dL");
-    $(document).prop("title", generateTitle(msg));
     $("#next").html(
       "Next reading: " + moment(nextReading(msg.dateString)).format("lll")
     );
@@ -44,6 +43,8 @@ $(document).ready(function () {
     lastReading = myChart.data.datasets[0].data.slice(-2)[0]; //go two back to calculate live delta
     var delta = msg.sgv - lastReading;
     myChart.data.datasets[1].data.push(delta);
-    myChart.update();
+
+    myChart.update(); //update chart
+    $(document).prop("title", generateTitle(msg, delta)); //update title
   });
 });
