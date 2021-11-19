@@ -43,19 +43,11 @@
       var socket = io();
 
       $(document).ready(function () {
-        // client-side
-        socket.on("connect", () => {
-          console.log("Ready client " + socket.id); // x8WIv7-mJelg7on_ALbx
-        });
-
         socket.on("disconnect", () => {
           console.log(socket.id); // undefined
           myChart.destroy();
         });
 
-        socket.on("connect", function (socket) {
-          myChart.reset();
-        });
         socket.on("retro", function (history) {
           i = history.length - 1;
           while (i > 0) {
