@@ -43,6 +43,11 @@
       var socket = io();
 
       $(document).ready(function () {
+
+        socket.on("retro", function (history){
+          console.log(history);
+        });
+
         socket.on("reading", function (msg) {
           $("#main").html("Reading: " + msg.sgv + " mg/dL");
           $(document).prop("title", generateTitle(msg));
