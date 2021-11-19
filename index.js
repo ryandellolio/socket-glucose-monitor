@@ -46,7 +46,7 @@ poll(
   8000
 );
 
-io.on("connection", (socket) => {
+io.on("connect", (socket) => {
   console.log("User " + socket.id + " connected");
 
  
