@@ -42,8 +42,10 @@ $(document).ready(function () {
     //finally add latest reading to the chart and update
     myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
     myChart.data.datasets[0].data.push(msg.sgv);
+
     lastReading = myChart.data.datasets[0].data.slice(-2)[0]; //go two back to calculate live delta
     var delta = msg.sgv - lastReading;
+    
     myChart.data.datasets[1].data.push(delta);
 
     myChart.update(); //update chart
