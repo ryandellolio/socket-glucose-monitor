@@ -12,12 +12,11 @@ const myChart = new Chart(ctx, {
         type: "scatter",
         showLine: false,
         pointRadius: 3,
-        lineTension: 0
+        lineTension: 0,
       },
       {
         label: "Delta",
         yAxisID: "d",
-        borderColor: "#0073e6",
         backgroundColor: "#99ccff",
         data: [],
         showLine: false,
@@ -29,7 +28,7 @@ const myChart = new Chart(ctx, {
     scales: {
       x: {
         beginAtZero: true,
-        reverse: false
+        reverse: false,
       },
       y: {
         max: 200,
@@ -48,7 +47,7 @@ const myChart = new Chart(ctx, {
       d: {
         max: -15,
         min: 15,
-        position: "right"
+        position: "right",
       },
     },
     plugins: {
@@ -80,14 +79,14 @@ const myChart = new Chart(ctx, {
               color: "#fff",
               backgroundColor: "#f5b942",
             },
-            line3: {
-              type: "line",
-              scaleID: "d",
-              yMin: 0,
-              yMax: 0,
-              borderColor: "#f5b942",
-              borderWidth: 2,
-            },
+          },
+          line3: {
+            type: "line",
+            yScaleID: 'd',
+            yMin: 0,
+            yMax: 0,
+            borderColor: "#99ccff",
+            borderWidth: 1.5
           },
         },
       },
