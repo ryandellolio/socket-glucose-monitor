@@ -29,8 +29,10 @@ $(document).ready(function () {
 
     //remove the last reading each new reading to create the scroll effect
     //if the reading is over 200, update the axis
-    //myChart.data.labels.splice(0, 1);   //THIS IS BROKEN
-    //myChart.data.datasets[0].data.splice(0, 1);  //THIS IS BROKEN
+    myChart.data.labels.splice(0, 1); 
+    myChart.data.datasets[0].data.splice(0, 1);
+    myChart.data.datasets[1].data.splice(0, 1);
+
 
     if (msg.sgv > 200) {
       myChart.options.scales.y.max = 400;
