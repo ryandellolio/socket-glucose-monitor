@@ -6,11 +6,11 @@ const myChart = new Chart(ctx, {
     datasets: [
       {
         label: "Glucose mg/dl 5 hour distribution",
-        borderDash: [5, 5],
         borderColor: "#000",
         backgroundColor: "#000",
         data: [],
-        showLine: false
+        showLine: false,
+        pointRadius: 3,
       },
     ],
   },
@@ -26,6 +26,9 @@ const myChart = new Chart(ctx, {
             return value + " mg/dL";
           },
         },
+        gridLines: {
+          drawBorder: false,
+        },
       },
     },
     plugins: {
@@ -39,10 +42,10 @@ const myChart = new Chart(ctx, {
             borderColor: "rgb(255, 99, 132)",
             borderWidth: 2,
             label: {
-              content: (ctx) => '60',
+              content: (ctx) => "60",
               enabled: true,
               color: "#fff",
-              backgroundColor: "rgb(255, 99, 132)"
+              backgroundColor: "rgb(255, 99, 132)",
             },
           },
           line2: {
@@ -52,10 +55,10 @@ const myChart = new Chart(ctx, {
             borderColor: "#f5b942",
             borderWidth: 2,
             label: {
-              content: (ctx) => '180',
+              content: (ctx) => "180",
               enabled: true,
               color: "#fff",
-              backgroundColor: "#f5b942"
+              backgroundColor: "#f5b942",
             },
           },
         },
