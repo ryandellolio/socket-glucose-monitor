@@ -11,8 +11,8 @@
     <div id="next">Loading...</div>
     <div id="countdown">Loading...</div>
 
-    <div style="width: 800px; height: 400px">
-      <canvas id="myChart" width="800" height="300"></canvas>
+    <div style="width: 800px; height: 500px">
+      <canvas id="myChart"></canvas>
     </div>
     <script
       src="https://cdn.socket.io/4.3.2/socket.io.min.js"
@@ -33,6 +33,12 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
       integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.1.0/chartjs-plugin-annotation.min.js"
+      integrity="sha512-uxcl+YXF0LbFyZFEb6HHmxl1NEI4X/5rjojm/13M1CBXBDj8wkmM99cKADkmtuky28pC/EpNTDHOEb/c3nDZsA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
@@ -72,6 +78,16 @@
             "Time until next reading: " + countdownTime(msg.dateString)
           );
 
+          //remove the last reading each new reading to create the scroll effect
+          //if the reading is over 200, update the axis
+          myChart.data.labels.splice(0, 1);
+          myChart.data.datasets[0].data.splice(0, 1);
+          if (msg.sgv > 200) {
+            myChart.options.scales.y.max = 400;
+          }
+          // -------
+
+          //finally add reading to the chart and update
           myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
           myChart.data.datasets[0].data.push(msg.sgv);
           myChart.update();
