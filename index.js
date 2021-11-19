@@ -49,11 +49,13 @@ poll(
 io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected");
 
-  //first time emit the last reading to that new connection only
-  io.to(socket.id).emit("reading", global.lastReading);
+ 
 
   //emit retro to that new connection only
   io.to(socket.id).emit("retro", global.retro);
+
+   //first time emit the last reading to that new connection only
+  io.to(socket.id).emit("reading", global.lastReading);
 
   socket.on("disconnect", () => {
     console.log("User " + socket.id + " disconnected");

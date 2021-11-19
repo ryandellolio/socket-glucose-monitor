@@ -43,8 +43,12 @@
       var socket = io();
 
       $(document).ready(function () {
-
-        socket.on("retro", function (history){
+        socket.on("retro", function (history) {
+          history.forEach((msg) => {
+            myChart.data.labels.push(msg.dateString);
+            myChart.data.datasets[0].data.push(msg.sgv);
+            myChart.update();
+          });
           console.log(history);
         });
 
