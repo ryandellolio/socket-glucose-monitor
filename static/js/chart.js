@@ -16,7 +16,7 @@ const myChart = new Chart(ctx, {
   options: {
     scales: {
       y: {
-        max: 200,
+        max: 300,
         min: 30,
         beginAtZero: true,
         ticks: {
