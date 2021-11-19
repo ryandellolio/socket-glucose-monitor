@@ -6,6 +6,9 @@ const myChart = new Chart(ctx, {
     datasets: [
       {
         label: "Glucose mg/dl",
+        borderDash: [5, 5],
+        borderColor: "#bae755",
+        backgroundColor: "#bae755",
         data: [],
       },
     ],
