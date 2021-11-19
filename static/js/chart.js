@@ -5,7 +5,7 @@ const myChart = new Chart(ctx, {
     labels: [],
     datasets: [
       {
-        label: "Glucose mg/dl 5 hour distribution",
+        label: "Blood glucose",
         borderColor: "#000",
         backgroundColor: "#000",
         data: [],
@@ -15,7 +15,7 @@ const myChart = new Chart(ctx, {
         lineTension: 0,
       },
       {
-        label: "Delta",
+        label: "Change +/- mg/DL",
         yAxisID: "d",
         backgroundColor: "#99ccff",
         data: [],
