@@ -1,6 +1,6 @@
 const ctx = document.getElementById("myChart");
 const myChart = new Chart(ctx, {
-  type: "line",
+  type: "bar",
   data: {
     labels: [],
     datasets: [
@@ -9,6 +9,17 @@ const myChart = new Chart(ctx, {
         borderColor: "#000",
         backgroundColor: "#000",
         data: [],
+        type: "scatter",
+        showLine: false,
+        pointRadius: 3,
+        lineTension: 0
+      },
+      {
+        label: "Delta",
+        yAxisID: "d",
+        borderColor: "#0073e6",
+        backgroundColor: "#99ccff",
+        data: [],
         showLine: false,
         pointRadius: 3,
       },
@@ -16,6 +27,10 @@ const myChart = new Chart(ctx, {
   },
   options: {
     scales: {
+      x: {
+        beginAtZero: true,
+        reverse: false
+      },
       y: {
         max: 200,
         min: 30,
@@ -29,6 +44,11 @@ const myChart = new Chart(ctx, {
         gridLines: {
           drawBorder: false,
         },
+      },
+      d: {
+        max: -15,
+        min: 15,
+        position: "right"
       },
     },
     plugins: {
@@ -59,6 +79,14 @@ const myChart = new Chart(ctx, {
               enabled: true,
               color: "#fff",
               backgroundColor: "#f5b942",
+            },
+            line3: {
+              type: "line",
+              scaleID: "d",
+              yMin: 0,
+              yMax: 0,
+              borderColor: "#f5b942",
+              borderWidth: 2,
             },
           },
         },
