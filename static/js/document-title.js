@@ -17,6 +17,10 @@ function generateTitle(msg, delta) {
     default:
       break;
   }
+  var modifier = "";
+  if(delta >= 0){
+    var modifier = "+";
+  }
 
-  return msg.sgv + " " + delta + " " + direction_ascii;
+  return msg.sgv + " " + modifier + delta + " " + direction_ascii;
 }
