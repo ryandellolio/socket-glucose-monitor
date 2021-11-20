@@ -41,9 +41,6 @@ $(document).ready(function () {
     var delta = msg.sgv - twoback;
     myChart.data.datasets[1].data.push(delta);
 
-    console.log(myChart.data.labels);
-    console.log(myChart.data.datasets[0].data);
-    console.log(myChart.data.datasets[1].data);
 
     //remove the last reading each new reading to create the scroll effect
     //if the reading is over 200, update the axis
@@ -52,6 +49,10 @@ $(document).ready(function () {
     //myChart.data.datasets[1].data.splice(0, 1);
 
     //^^^THIS IS BROKEN
+
+    console.log(myChart.data.labels);
+    console.log(myChart.data.datasets[0].data);
+    console.log(myChart.data.datasets[1].data);
 
     myChart.update(); //update chart
     $(document).prop("title", generateTitle(msg, delta)); //update title
