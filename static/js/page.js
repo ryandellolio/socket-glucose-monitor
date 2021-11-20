@@ -14,7 +14,6 @@ $(document).ready(function () {
 
       i = i - 1;
     }
-    console.log(history);
   });
 
   socket.on("reading", function (msg) {
@@ -41,12 +40,13 @@ $(document).ready(function () {
     //finally add latest reading to the chart
     myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
     myChart.data.datasets[0].data.push(msg.sgv);
-    //myChart.data.datasets[1].data.push(delta);
 
-    lastReading = myChart.data.datasets[0].data.at(-1); //go one back to calculate live delta
-    twoback = myChart.data.datasets[0].data.at(-2); //go two back to calculate live delta
+    lastReading = myChart.data.datasets[0].data.slice(-1)[0]; //go one back to calculate live delta
+    twoback = myChart.data.datasets[0].data.slice(-2)[0]; //go two back to calculate live delta
     var delta = lastReading - twoback;
+    myChart.data.datasets[1].data.push(-delta);
 
+    console.log(myChart);
     myChart.update(); //update chart
     $(document).prop("title", generateTitle(msg, delta)); //update title
   });
