@@ -41,9 +41,8 @@ $(document).ready(function () {
     myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
     myChart.data.datasets[0].data.push(msg.sgv);
 
-    lastReading = myChart.data.datasets[0].data.slice(-1)[0]; //go one back to calculate live delta
     twoback = myChart.data.datasets[0].data.slice(-2)[0]; //go two back to calculate live delta
-    var delta = lastReading - twoback;
+    var delta = twoback - msg.sgv;
     myChart.data.datasets[1].data.push(-delta);
 
     console.log(myChart);
