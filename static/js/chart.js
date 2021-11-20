@@ -63,13 +63,13 @@ const myChart = new Chart(ctx, {
             type: "line",
             yMin: 60,
             yMax: 60,
-            borderColor: "rgb(255, 99, 132)",
+            borderColor: "#ff0000",
             borderWidth: 2,
             label: {
               content: (ctx) => "60",
               enabled: true,
               color: "#fff",
-              backgroundColor: "rgb(255, 99, 132)",
+              backgroundColor: "#ff0000",
             },
           },
           line2: {
