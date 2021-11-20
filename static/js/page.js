@@ -38,17 +38,20 @@ $(document).ready(function () {
     }
     // -------
 
-    lastReading = myChart.data.datasets[0].data.slice(-1)[0]; //go one back to calculate live delta
-    var delta = msg.sgv - lastReading;
 
     //finally add latest reading to the chart
     myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
     myChart.data.datasets[0].data.push(msg.sgv);
-    myChart.data.datasets[1].data.push(delta);
+    //myChart.data.datasets[1].data.push(delta);
     
+    lastReading = myChart.data.datasets[0].data.at(-1); //go one back to calculate live delta
+    twoback = myChart.data.datasets[0].data.at(-2); //go two back to calculate live delta
+    var delta = lastReading - twoback;
+
     console.log(lastReading);
     console.log(delta);
 
+    console.log(myChart);
     myChart.update(); //update chart
     $(document).prop("title", generateTitle(msg, delta)); //update title
   });
