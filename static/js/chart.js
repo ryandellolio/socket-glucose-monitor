@@ -93,6 +93,14 @@ const myChart = new Chart(ctx, {
             borderColor: "#99ccff",
             borderWidth: 1.5,
           },
+          box1: {
+            type: 'box',
+            drawTime: 'beforeDatasetsDraw',
+            yMin: 75,
+            yMax: 140,
+            borderWidth: 0,
+            backgroundColor: 'rgba(0, 255, 0, 0.1)'
+         }
         },
       },
     },
