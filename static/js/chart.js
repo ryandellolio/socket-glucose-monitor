@@ -22,7 +22,7 @@ const myChart = new Chart(ctx, {
       {
         label: "Change +/- mg/dL",
         yAxisID: "d",
-        backgroundColor: "#99ccff",
+        backgroundColor: "#b3ffff",
         data: [],
         showLine: false,
         pointRadius: 3
