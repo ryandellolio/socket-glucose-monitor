@@ -29,24 +29,23 @@ $(document).ready(function () {
 
     //remove the last reading each new reading to create the scroll effect
     //if the reading is over 200, update the axis
-    myChart.data.labels.splice(0, 1); 
+    myChart.data.labels.splice(0, 1);
     myChart.data.datasets[0].data.splice(0, 1);
     myChart.data.datasets[1].data.splice(0, 1);
-
 
     if (msg.sgv > 200) {
       myChart.options.scales.y.max = 400;
     }
     // -------
 
-    //finally add latest reading to the chart and update
+    lastReading = myChart.data.datasets[0].data.slice(-1)[0]; //go one back to calculate live delta
+    var delta = msg.sgv - lastReading;
+
+    //finally add latest reading to the chart
     myChart.data.labels.push(moment(msg.dateString).format("hh:mm a"));
     myChart.data.datasets[0].data.push(msg.sgv);
-
-    lastReading = myChart.data.datasets[0].data.slice(-2)[0]; //go one back to calculate live delta
-    var delta = msg.sgv - lastReading;
-    
     myChart.data.datasets[1].data.push(delta);
+    
     console.log(lastReading);
     console.log(delta);
 
