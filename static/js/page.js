@@ -28,7 +28,7 @@ $(document).ready(function () {
       "Time until next reading: " + countdownTime(msg.dateString)
     );
 
-    if (msg.sgv > 200) {
+    if (msg.sgv > 180) {
       myChart.options.scales.y.max = 400;
     }
     // -------
@@ -41,20 +41,16 @@ $(document).ready(function () {
     var delta = msg.sgv - twoback;
     myChart.data.datasets[1].data.push(delta);
 
-
     //remove the last reading each new reading to create the scroll effect
     //if the reading is over 200, update the axis
     myChart.data.labels.shift();
     myChart.data.datasets[0].data.shift();
     myChart.data.datasets[1].data.shift();
 
-    //^^^THIS IS BROKEN
-
     console.log(myChart.data.labels);
     console.log(myChart.data.datasets[0].data);
     console.log(myChart.data.datasets[1].data);
     console.log("Delta: " + delta);
-
 
     myChart.update(); //update chart
     $(document).prop("title", generateTitle(msg, delta)); //update title
