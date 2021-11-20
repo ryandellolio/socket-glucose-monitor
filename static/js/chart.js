@@ -90,7 +90,7 @@ const myChart = new Chart(ctx, {
             yScaleID: "d",
             yMin: 0,
             yMax: 0,
-            borderColor: "#99ccff",
+            borderColor: "#b3ffff",
             borderWidth: 1.5,
           },
           box1: {

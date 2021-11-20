@@ -5,13 +5,11 @@ $(document).ready(function () {
 
   socket.on("retro", function (history) {
     i = history.length - 1;
-    myChart.data.datasets[1].data.push(0); //push placeholder bar because we don't know data we don't have
+
     while (i > 0) {
-      //drop the last reading by stopping at 1.  There will be emit of most recent reading outside of retro emission
       myChart.data.labels.push(moment(history[i].dateString).format("hh:mm a"));
       myChart.data.datasets[0].data.push(history[i].sgv);
       myChart.data.datasets[1].data.push(history[i - 1].sgv - history[i].sgv);
-
       i = i - 1;
     }
   });
