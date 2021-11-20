@@ -6,11 +6,14 @@ $(document).ready(function () {
   socket.on("retro", function (history) {
     i = history.length - 1;
     myChart.data.datasets[1].data.push(null); //we don't know what came before the retro values
-    
+
     while (i > 0) {
       myChart.data.labels.push(moment(history[i].dateString).format("hh:mm a"));
       myChart.data.datasets[0].data.push(history[i].sgv);
-      myChart.data.datasets[1].data.push(history[i - 1].sgv - history[i].sgv);
+      if (i != history.length - 1) {
+        //don't show the last delta lest it gets repeated in the reading display
+        myChart.data.datasets[1].data.push(history[i - 1].sgv - history[i].sgv);
+      }
       i = i - 1;
     }
   });
@@ -24,14 +27,6 @@ $(document).ready(function () {
     $("#countdown").html(
       "Time until next reading: " + countdownTime(msg.dateString)
     );
-
-    //remove the last reading each new reading to create the scroll effect
-    //if the reading is over 200, update the axis
-    //myChart.data.labels.splice(0, 1);
-    //myChart.data.datasets[0].data.splice(0, 1);
-    //myChart.data.datasets[1].data.splice(0, 1);
-
-    //^^^THIS IS BROKEN
 
     if (msg.sgv > 200) {
       myChart.options.scales.y.max = 400;
@@ -49,6 +44,14 @@ $(document).ready(function () {
     console.log(myChart.data.labels);
     console.log(myChart.data.datasets[0].data);
     console.log(myChart.data.datasets[1].data);
+
+    //remove the last reading each new reading to create the scroll effect
+    //if the reading is over 200, update the axis
+    //myChart.data.labels.splice(0, 1);
+    //myChart.data.datasets[0].data.splice(0, 1);
+    //myChart.data.datasets[1].data.splice(0, 1);
+
+    //^^^THIS IS BROKEN
 
     myChart.update(); //update chart
     $(document).prop("title", generateTitle(msg, delta)); //update title
