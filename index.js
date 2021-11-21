@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config()
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
@@ -21,7 +22,7 @@ poll(
     new Promise(() => {
       // Make a request for a user with a given ID
       axios
-        .get("https://glucose.ryan.dellol.io/api/v1/entries/sgv.json?find[device]=share2&count=30")
+        .get(process.env.NIGHTSCOUT_URL + "api/v1/entries/sgv.json?find[device]=share2&count=30")
         .then(function (response) {
           // handle success
 
