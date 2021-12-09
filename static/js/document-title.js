@@ -13,14 +13,17 @@ function generateTitle(msg, delta) {
     case "SingleUp":
       direction_ascii = "↑";
       break;
-    
+    case "NONE":
+      direction_ascii = "";
+      break;
+
     default:
       break;
   }
   var modifier = "";
-  if(delta >= 0){
+  if (delta >= 0) {
     var modifier = "+";
   }
-
+  console.log(msg);
   return msg.sgv + " " + modifier + delta + " " + direction_ascii;
 }
